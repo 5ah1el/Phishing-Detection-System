@@ -29,12 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
           resultContainer.classList.add('hidden');
           
           // Send URL to backend
-          fetch('http://localhost:5000/predict', {
+          fetch('/prediction', {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json'
               },
-              body: JSON.stringify({ url })
+              body: JSON.stringify({ url: url })
           })
           .then(response => response.json())
           .then(data => {
@@ -68,22 +68,22 @@ document.addEventListener('DOMContentLoaded', function() {
       resultContainer.innerHTML = '';
       resultContainer.classList.remove('hidden', 'result-safe', 'result-danger');
       
-      if (data.label.toLowerCase() === 'safe') {
+      // Updated to match backend response format
+      if (data.result === 'Legitimate') {
           resultContainer.classList.add('result-safe');
           resultContainer.innerHTML = `
-              <p>This URL appears to be safe with a probability of ${Math.round(data.probability * 100)}%.</p>
+              <p>This URL appears to be safe.</p>
           `;
       } else {
           resultContainer.classList.add('result-danger');
           resultContainer.innerHTML = `
-              <p>This URL may be phishing with a probability of ${Math.round(data.probability * 100)}%.</p>
+              <p>This URL may be phishing.</p>
           `;
       }
       
       resultContainer.classList.remove('hidden');
   }
 });
-
 
 // // My new code begins >>>>
 

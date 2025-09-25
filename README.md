@@ -11,7 +11,7 @@ A machine learning-based web application that detects phishing websites by analy
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [How It Works](#how-it-works)
-- [Model Performance](#model-performance)
+
 
 ## Features
 

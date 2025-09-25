@@ -24,16 +24,6 @@ A machine learning-based web application that detects phishing websites by analy
 - **Comprehensive Analysis**: Examines multiple URL features including domain properties, URL structure, and content indicators
 - **Cross-platform Compatibility**: Works on desktop and mobile devices
 
-## Demo
-
-*Home Page*
-![Home Page](screenshots/homepage.png)
-
-*Prediction Page*
-![Prediction Page](screenshots/prediction.png)
-
-*Results Page*
-![Results Page](screenshots/results.png)
 
 ## Technologies Used
 

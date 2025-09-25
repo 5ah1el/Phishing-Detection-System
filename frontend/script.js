@@ -24,8 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
           if (!url) return;
           
           // Show loading state
+          const originalText = checkBtn.textContent;
           checkBtn.disabled = true;
-          checkBtn.textContent = 'Checking...';
+          checkBtn.textContent = 'Analyzing...';
           resultContainer.classList.add('hidden');
           
           // Send URL to backend
@@ -42,13 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
           })
           .catch(error => {
               console.error('Error:', error);
-              resultContainer.innerHTML = '<p>An error occurred while checking the URL.</p>';
+              resultContainer.innerHTML = '<p>❌ An error occurred while checking the URL. Please try again.</p>';
               resultContainer.classList.remove('hidden');
+              resultContainer.classList.add('result-danger');
           })
           .finally(() => {
               // Reset button
               checkBtn.disabled = false;
-              checkBtn.textContent = 'Check';
+              checkBtn.textContent = originalText;
           });
       });
       
@@ -72,65 +74,40 @@ document.addEventListener('DOMContentLoaded', function() {
       if (data.result === 'Legitimate') {
           resultContainer.classList.add('result-safe');
           resultContainer.innerHTML = `
-              <p>This URL appears to be safe.</p>
+              <h3>✅ Safe URL</h3>
+              <p>This URL has been analyzed and appears to be safe.</p>
           `;
       } else {
           resultContainer.classList.add('result-danger');
           resultContainer.innerHTML = `
-              <p>This URL may be phishing.</p>
+              <h3>⚠️ Potential Phishing Detected</h3>
+              <p>This URL may be phishing. We recommend not visiting this site.</p>
           `;
       }
       
+      // Add animation
+      resultContainer.style.opacity = '0';
       resultContainer.classList.remove('hidden');
+      setTimeout(() => {
+          resultContainer.style.transition = 'opacity 0.3s ease';
+          resultContainer.style.opacity = '1';
+      }, 10);
   }
 });
 
-// // My new code begins >>>>
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     const urlInput = document.getElementById('url-input');
-//     const checkBtn = document.getElementById('check-btn');
-//     const clearBtn = document.getElementById('clear-btn');
-//     const resultDiv = document.getElementById('result');
-
-//     if (urlInput) {
-//         urlInput.addEventListener('input', () => {
-//             checkBtn.disabled = urlInput.value.trim() === '';
-//         });
-//     }
-
-//     if (checkBtn) {
-//         checkBtn.addEventListener('click', () => {
-//             const url = urlInput.value.trim();
-
-//             if (url) {
-//                 fetch('/prediction', {
-//                     method: 'POST',
-//                     headers: {
-//                         'Content-Type': 'application/json',
-//                     },
-//                     body: JSON.stringify({ url: url }),
-//                 })
-//                 .then(response => response.json())
-//                 .then(data => {
-//                     resultDiv.classList.remove('hidden');
-//                     resultDiv.innerHTML = `<h3>Result: ${data.result}</h3>`;
-//                 })
-//                 .catch(error => {
-//                     console.error('Error:', error);
-//                     resultDiv.classList.remove('hidden');
-//                     resultDiv.innerHTML = `<h3 style="color: red;">Error predicting URL</h3>`;
-//                 });
-//             }
-//         });
-//     }
-
-//     if (clearBtn) {
-//         clearBtn.addEventListener('click', () => {
-//             urlInput.value = '';
-//             checkBtn.disabled = true;
-//             resultDiv.classList.add('hidden');
-//             resultDiv.innerHTML = '';
-//         });
-//     }
-// });
+// Add input validation
+document.addEventListener('DOMContentLoaded', function() {
+    const urlInput = document.getElementById('url-input');
+    
+    if (urlInput) {
+        urlInput.addEventListener('input', function() {
+            // Basic URL validation
+            const url = urlInput.value.trim();
+            if (url && !url.startsWith('http')) {
+                urlInput.setCustomValidity('Please include http:// or https:// in the URL');
+            } else {
+                urlInput.setCustomValidity('');
+            }
+        });
+    }
+});

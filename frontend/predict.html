@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Prediction - PhishGuard</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
 </head>
 <body>
     <header>
         <div class="logo">
-            <svg class="logo-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="logo-icon" width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M8 1.33334L2 3.33334V7.33334C2 10.9467 4.56 14.28 8 15.3333C11.44 14.28 14 10.9467 14 7.33334V3.33334L8 1.33334Z" stroke="#4a6cf7" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <span>PhishGuard</span>
@@ -26,14 +26,13 @@
     <main class="prediction-main">
         <div class="prediction-container">
             <h1>URL Phishing Detection</h1>
-            <p class="subtitle">Enter a URL below to check if it's potentially malicious</p>
+            <p class="subtitle">Enter a URL below to check if it's potentially malicious using our advanced AI system</p>
 
             <div class="url-form">
-                <input type="text" id="url-input" placeholder="Enter URL (e.g., https://example.com)">
+                <input type="text" id="url-input" placeholder="Enter URL (e.g., https://example.com)" autocomplete="off">
                 <div class="button-group">
-                    <!-- <button id="check-btn" class="btn primary-btn">Check</button> -->
-                    <button id="check-btn" class="check-button" disabled>Check</button>
-                    <button id="clear-btn" class="btn secondary-btn">Clear</button>
+                    <button id="check-btn" class="check-button" disabled>Check URL</button>
+                    <button id="clear-btn" class="btn secondary-btn">Clear Form</button>
                 </div>
             </div>
 
@@ -44,18 +43,18 @@
             <div class="instructions-container">
                 <h3>How to use the URL checker</h3>
                 <ol>
-                    <li>Enter the complete URL you want to check in the input field above</li>
-                    <li>Click the "Check" button to analyze the URL</li>
-                    <li>Wait for our system to process and evaluate the URL</li>
+                    <li>Enter the complete URL you want to check in the input field above (include https://)</li>
+                    <li>Click the "Check URL" button to analyze the URL with our AI-powered system</li>
+                    <li>Wait for our system to process and evaluate the URL (usually takes 2-3 seconds)</li>
                     <li>Review the results to determine if the URL is safe or potentially malicious</li>
-                    <li>Use the "Clear" button to reset the form and check another URL</li>
+                    <li>Use the "Clear Form" button to reset the form and check another URL</li>
                 </ol>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2023 PhishGuard - All rights reserved</p>
+        <p>&copy; 2025 September PhishGuard - All rights reserved</p>
     </footer>
 
     <script src="script.js"></script>
